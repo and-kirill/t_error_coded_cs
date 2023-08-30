@@ -1,0 +1,72 @@
+\documentclass[tikz,border=1pt]{standalone}
+\usepackage{pgfplots}
+
+\begin{document}
+\input{common}
+
+\begin{tikzpicture}
+\begin{axis}[
+    width=18cm, height=12cm,
+    % Set up axes names
+    xlabel={$K_a$},
+    ylabel={${E_b}/{N_0}$, dB},
+    % Set axes limits
+    xmin=10,xmax=650,
+    ymin=7, ymax=35.0,
+    % Adjust legend position and cell alignment
+    legend cell align={left},
+    legend columns = 1,
+    legend style={at={(1, 0)}, anchor=south east},
+    axis line style={latex-latex},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!20},
+    major grid style={line width=.2pt,draw=gray!50},
+    tick align=inside,
+    tickpos=left,
+    xtick distance=50,
+    minor tick num=4,
+    x tick label style={
+        /pgf/number format/.cd,
+        fixed,
+        fixed zerofill,
+        precision=0
+    }
+]
+
+\begin{scope}[mark=none, line width=1.5]
+
+\addplot[color=\colorA] table[x=Ka, y=EBNO]{../reference/N1/polar_T14.txt};
+
+\begin{scope}[color=\colorB]
+\PlotRCB{../data/ebno_ka_ks10_rcb_N1.txt}
+\end{scope}
+
+\begin{scope}[color=\colorC]
+\PlotRCB{../data/ebno_ka_ks15_rcb_N1.txt}
+\end{scope}
+
+\begin{scope}[color=\colorD]
+\PlotRCB{../data/ebno_ka_ks15_linear_1024_N1.txt}
+\end{scope}
+
+\addplot[color=\colorE, mark=none] table[x=Ka, y=EBNO]{../reference/N1/converse.txt};
+
+\end{scope}
+
+
+\legend {
+$14$-ALOHA Polar,
+{CCS, $10$ bits/slot, RCB},
+{CCS, $15$ bits/slot, RCB},
+{CCS, $15$ bits/slot, Convolutional bound},
+Converse
+}
+
+\pgfresetboundingbox
+\path
+(current axis.south west) -- ++(-14mm,-10mm)
+rectangle (current axis.north east) -- ++(3mm, 2mm);
+
+\end{axis}
+\end{tikzpicture}
+\end{document}

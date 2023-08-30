@@ -1,0 +1,39 @@
+\def\PgfColorA{0, 0, 0}
+\def\PgfColorB{27,158,119}
+\def\PgfColorC{217,95,2}
+\def\PgfColorD{117,112,179}
+\def\PgfColorE{231,41,138}
+\def\PgfColorF{102,166,30}
+\def\PgfColorG{230,171,2}
+\def\PgfColorH{166,118,29}
+
+\definecolor{MainColorA}{RGB}{\PgfColorA}
+\definecolor{MainColorB}{RGB}{\PgfColorB}
+\definecolor{MainColorC}{RGB}{\PgfColorC}
+\definecolor{MainColorD}{RGB}{\PgfColorD}
+\definecolor{MainColorE}{RGB}{\PgfColorE}
+\definecolor{MainColorF}{RGB}{\PgfColorF}
+\definecolor{MainColorG}{RGB}{\PgfColorG}
+\definecolor{MainColorH}{RGB}{\PgfColorH}
+
+\def\colorA{MainColorA!100}
+\def\colorB{MainColorB!100}
+\def\colorC{MainColorC!100}
+\def\colorD{MainColorD!100}
+\def\colorE{MainColorE!100}
+\def\colorF{MainColorF!100}
+\def\colorG{MainColorG!100}
+\def\colorH{MainColorH!100}
+
+\newcommand{\PlotRCB}[1]{
+\begin{scope}[smooth, tension=0.2]
+\addplot table[x=Ka, y=t0]{#1};
+\addplot[forget plot] table[x=Ka, y=t1]{#1};
+\addplot[forget plot] table[x=Ka, y=t2]{#1};
+\addplot[forget plot] table[x=Ka, y=t3]{#1};
+\addplot[forget plot] table[x=Ka, y=t4]{#1};
+\addplot[forget plot] table[x=Ka, y=t5]{#1};
+\end{scope}
+}
+
+
